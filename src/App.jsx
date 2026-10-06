@@ -7,6 +7,8 @@ import Sanction from './pages/sanction/Sanction';
 import SanctionDetail from './pages/sanction/SanctionDetail';
 import Activity from './pages/history/activity';
 import UserList from './pages/userList/UserList';
+import AppLayout from './components/layout/AppLayout';
+import Unauthorized from './pages/Unauthorized';
 // import InstallPopup from './components/ui/InstallPopup';
 
 
