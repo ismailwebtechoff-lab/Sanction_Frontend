@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import "../index.css";
-import Loader from "./components/ui/Loader";
+import Loader from "../components/ui/Loader";
 import { useAuth } from "../context/AuthContext";
 
 const PrivateRoute = ({ children, roles }) => {
