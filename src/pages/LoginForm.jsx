@@ -80,6 +80,7 @@ const LoginForm = () => {
               <input
                 id="email"
                 type="text"
+                name="username"
                 required
                 value={form.username}
                 onChange={handleChange}
@@ -89,7 +90,7 @@ const LoginForm = () => {
             </div>
 
              {/* Password */}
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2"
