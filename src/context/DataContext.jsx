@@ -38,7 +38,7 @@ export const DataProvider = ({ children }) => {
   const fetchSanctionData = async () => {
     try {
       const res = await API.get('/sanction')
-      const sorted = res.data.sort((a, b) => a.createdAt-b.createdAt)
+      const sorted = res.data.sanctions.sort((a, b) => a.createdAt-b.createdAt)
       setSanctionContext(sorted);
     } catch (err) {
       console.error('Failed to load sanctions:', err)
