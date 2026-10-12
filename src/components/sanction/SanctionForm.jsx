@@ -60,7 +60,12 @@ export default function SanctionForm({
   const [sanctionNumber, setSanctionNumber] =
     useState("");
 
+const [sanctionName, setSanctionName] =
+    useState("");
+
   const [sanctionDate, setSanctionDate] =
+    useState("");
+const [workDate, setWorkDate] =
     useState("");
 
   const [customerName, setCustomerName] =
@@ -70,6 +75,8 @@ export default function SanctionForm({
     useState("");
 
   const [invoiceNumber, setInvoiceNumber] =
+    useState("");
+const [k2Number, setK2Number] =
     useState("");
 
   const [amount, setAmount] =
@@ -113,7 +120,13 @@ export default function SanctionForm({
   useEffect(() => {
     if (!initialSanction) {
       setSanctionNumber("");
+setSanctionName("");
       setSanctionDate(
+        new Date()
+          .toISOString()
+          .slice(0, 10)
+      );
+setWorkDate(
         new Date()
           .toISOString()
           .slice(0, 10)
@@ -121,6 +134,7 @@ export default function SanctionForm({
       setCustomerName("");
       setReferenceNumber("");
       setInvoiceNumber("");
+setK2Number("");
       setAmount("");
       setRemarks("");
 
@@ -136,11 +150,23 @@ export default function SanctionForm({
     setSanctionNumber(
       initialSanction.sanctionNumber || ""
     );
+setSanctionName(
+      initialSanction.sanctionName || ""
+    );
 
     setSanctionDate(
       initialSanction.sanctionDate
         ? String(
             initialSanction.sanctionDate
+          ).slice(0, 10)
+        : new Date()
+            .toISOString()
+            .slice(0, 10)
+    );
+setWorkDate(
+      initialSanction.workDate
+        ? String(
+            initialSanction.workDate
           ).slice(0, 10)
         : new Date()
             .toISOString()
@@ -158,6 +184,10 @@ export default function SanctionForm({
     setInvoiceNumber(
       initialSanction.invoiceNumber || ""
     );
+setK2Number(
+      initialSanction.k2Number || ""
+    );
+
 
     setAmount(
       initialSanction.amount != null
@@ -269,6 +299,9 @@ export default function SanctionForm({
     if (!sanctionNumber.trim()) {
       return "Please enter Sanction Number.";
     }
+if (!sanctionName.trim()) {
+      return "Please enter Sanction Name.";
+    }
 
     if (!sanctionDate) {
       return "Please select Sanction Date.";
@@ -324,8 +357,9 @@ export default function SanctionForm({
       {
         sanctionNumber:
           sanctionNumber.trim(),
-
+sanctionNumber,
         sanctionDate,
+workDate,
 
         customerName:
           customerName.trim(),
@@ -335,6 +369,8 @@ export default function SanctionForm({
 
         invoiceNumber:
           invoiceNumber.trim(),
+k2Number:
+         k2Number.trim(),
 
         amount:
           Number(amount) || 0,
@@ -370,9 +406,9 @@ export default function SanctionForm({
       {
         sanctionNumber:
           sanctionNumber.trim(),
-
+sanctionNumber,
         sanctionDate,
-
+workDate,
         customerName:
           customerName.trim(),
 
@@ -381,6 +417,8 @@ export default function SanctionForm({
 
         invoiceNumber:
           invoiceNumber.trim(),
+k2Number:
+         k2Number.trim(),
 
         amount:
           Number(amount) || 0,
@@ -667,6 +705,30 @@ export default function SanctionForm({
                   className="w-full h-10 px-3.5 rounded-lg border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
                 />
               </div>
+{/* Sanction Name */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  Sanction Name{" "}
+                  <span className="text-rose-500">
+                    *
+                  </span>
+                </label>
+
+                <input
+                  type="text"
+                  required
+                  value={
+                    sanctionName
+                  }
+                  onChange={(e) =>
+                    setSanctionName(
+                      e.target.value
+                    )
+                  }
+                  placeholder="e.g. SAN-006"
+                  className="w-full h-10 px-3.5 rounded-lg border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                />
+              </div>
 
               {/* Date */}
               <div>
@@ -685,6 +747,29 @@ export default function SanctionForm({
                   }
                   onChange={(e) =>
                     setSanctionDate(
+                      e.target.value
+                    )
+                  }
+                  className="w-full h-10 px-3.5 rounded-lg border border-slate-300 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                />
+              </div>
+{/* Work Date */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  Work Date{" "}
+                  <span className="text-rose-500">
+                    *
+                  </span>
+                </label>
+
+                <input
+                  type="date"
+                  required
+                  value={
+                    workDate
+                  }
+                  onChange={(e) =>
+                    setWorkDate(
                       e.target.value
                     )
                   }
@@ -779,6 +864,26 @@ export default function SanctionForm({
                   }
                   onChange={(e) =>
                     setInvoiceNumber(
+                      e.target.value
+                    )
+                  }
+                  placeholder="e.g. INV-2026-950"
+                  className="w-full h-10 px-3.5 rounded-lg border border-slate-300 text-sm font-mono text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                />
+              </div>
+{/* K2 Number */}
+              <div>
+                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  K2 Agreement Number
+                </label>
+
+                <input
+                  type="text"
+                  value={
+                    k2Number
+                  }
+                  onChange={(e) =>
+                    setK2Number(
                       e.target.value
                     )
                   }
