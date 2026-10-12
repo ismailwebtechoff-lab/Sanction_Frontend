@@ -194,7 +194,7 @@ export default function SanctionDetail() {
   const { user } = useAuth();
 
   const {
-    setSanctionContext,
+    sanctionContext,setSanctionContext,
   } = useData();
 
   const [sanction, setSanction] = useState(null);
@@ -231,15 +231,8 @@ export default function SanctionDetail() {
       setLoading(true);
       setError("");
 
-      const response = await API.get(
-        `/sanction/${id}`
-      );
-
-      const data =
-        response.data?.sanction ||
-        response.data;
-
-      setSanction(data);
+      const response = sanctionContext.find((sanction)=> sanction._id===id);
+      setSanction(response);
     } catch (err) {
       console.error(
         "Failed to load sanction:",
